@@ -1,5 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 let product = 'Fritadeira elétrica';
 product = 'Notebook';
-exports.default = product;
+let price = 4500;
+export function display(product, price) {
+    console.log(product.toUpperCase(), price.toFixed(2));
+}
+display(product, price);
