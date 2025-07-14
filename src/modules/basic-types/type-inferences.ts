@@ -1,5 +1,5 @@
-// let product = 'Fritadeira elétrica';
+let product = 'Fritadeira elétrica';
 
-// product = 750
+product = 'Notebook';
 
-// export default product;
+export default product;

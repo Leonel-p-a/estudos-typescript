@@ -1,5 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 let product = 'Fritadeira elétrica';
-product = 750;
-export default product;
-
-console.log(product)
+product = 'Notebook';
+exports.default = product;
