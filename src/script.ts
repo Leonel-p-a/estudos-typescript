@@ -1,3 +1,3 @@
-export function bootstrap() {
-    console.log('Script carregado com sucesso e de forma automática. Confira');
-}
+import { bootstrap } from "./modules/basic-types/type-intersection.js";
+
+export { bootstrap };
