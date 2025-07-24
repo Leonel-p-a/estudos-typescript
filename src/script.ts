@@ -1,3 +1,3 @@
-import { bootstrap } from "./modules/narrowing/non-null-assertion.js";
+import { bootstrap } from "./modules/narrowing/array-isarray.js";
 
 export { bootstrap };
