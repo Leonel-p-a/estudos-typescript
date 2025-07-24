@@ -1,3 +1,3 @@
-import { bootstrap } from "./modules/basic-types/type-intersection.js";
+import { bootstrap } from "./modules/narrowing/non-null-assertion.js";
 
 export { bootstrap };
