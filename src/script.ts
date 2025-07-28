@@ -1,3 +1,3 @@
-import { bootstrap } from "./modules/interface/extends.js";
+import { bootstrap } from "./modules/utility-types/readonly.js";
 
 export { bootstrap };
