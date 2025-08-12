@@ -1,3 +1,3 @@
-import { bootstrap } from "./modules/generics/generic-type-alias-and-interface.js";
+import { bootstrap } from "./modules/generics/generic-promises-then.js";
 
 export { bootstrap };
