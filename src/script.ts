@@ -1,3 +1,3 @@
-import { bootstrap } from "./modules/generics/generic-promises-async-await.js";
+import { bootstrap } from "./modules/generics/generic-constraints.js";
 
 export { bootstrap };
