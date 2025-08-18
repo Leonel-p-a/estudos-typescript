@@ -1,31 +1,29 @@
 export const bootstrap = (): void => {
     type ConstructorFunction = { new(...args: any[]): {} }
 
-    function AddLogMethod<T extends ConstructorFunction>(constructor: T): T {
-        console.log('Chegamos no decorador');
-        console.log(constructor);
-
-        return class extends constructor {
-            loggerInfo = () => {
-                console.log(`${new Date().toLocaleString('pt-BR')} - ${JSON.stringify(this)}`)
+    function AddLogMethod(dateFormat: string, prefix: string) {
+        return function <T extends ConstructorFunction>(constructor: T): T {            
+            constructor.prototype.loggerInfo = function() {
+                console.log(`${prefix} - ${new Date().toLocaleString(dateFormat)} - ${JSON.stringify(this)} - ${constructor.name}`);
             }
-        }
+            return constructor;
+        };
     }
 
-    @AddLogMethod
+    @AddLogMethod('pt-BR', '[LOG]')
     class Product {
         name: string;
-        loggerInfo!: () => void;
+        // loggerInfo!: () => void;
         constructor(name: string) {
             this.name = name;
         }
     }
 
-    @AddLogMethod
+    @AddLogMethod('pt-BR', '[LOG]')
     class Person {
         private _name: string;
         private _age: number;
-        loggerInfo!: () => void;
+        // loggerInfo!: () => void;
 
         constructor(name: string, age: number) {
             this._name = name;
@@ -42,10 +40,10 @@ export const bootstrap = (): void => {
     }
 
     const product = new Product('Laptop');
-    console.log(product.name) // Roberta
-    product.loggerInfo(); // 17/08/2025, 22:27:26 - {"name":"Laptop"}
+    console.log(product.name);
+    ( product as any ).loggerInfo();
 
     const person = new Person('Roberta', 20);
-    console.log(`${person.name} - ${person.age} anos`)
-    person.loggerInfo();
+    console.log(`${person.name} - ${person.age} anos`);
+    ( person as any ).loggerInfo();
 };
