@@ -1,3 +1,3 @@
-import { bootstrap } from "./modules/decorators/class-decorator.js";
+import { bootstrap } from "./modules/decorators/multi-decorator.js";
 
 export { bootstrap };
