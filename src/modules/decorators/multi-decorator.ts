@@ -12,7 +12,6 @@ export const bootstrap = (): void => {
             descriptor.value = function(this: any) {
                 // liberar a execução do método somente se o intervalo entre a última execução e o instante atual for atendido
                 const now = Date.now(); // instante atual
-                console.log(this)
 
                 if (now - lastExecution < limitInMicroseconds) {
                     console.error(`O método ${String(propertyKey)} só pode ser chamado novamente após ${limitInMicroseconds}ms`);
@@ -20,7 +19,6 @@ export const bootstrap = (): void => {
                 } else {
                     lastExecution = now;
                     // conecta o contexto da nova função associada ao descriptor.value com o contexto do método original que está sendo decorado
-                    console.log(this)
                     return originalMethod.apply(this);
                 }
             } as T;
@@ -49,11 +47,12 @@ export const bootstrap = (): void => {
         @CheckPermissions(['User', 'Admin', 'Super User'])
         @RateLimit(3000)
         getItem() {
-            console.log('Retorna a relação de iens adicionados ao carrinho');
+            console.log('Retorna a relação de itens adicionados ao carrinho');
         }
     }
 
     const shoppingCart = new ShoppingCart();
+    // shoppingCart.getItem()
     document.getElementById('getItems')?.addEventListener('click', () => {
         shoppingCart.getItem();
     })
