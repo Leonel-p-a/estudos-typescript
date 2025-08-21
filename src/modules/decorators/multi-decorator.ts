@@ -4,7 +4,7 @@ export const bootstrap = (): void => {
         permissions: ['User'],
     }
 
-    function RateLimit(limitInMicroseconds: number): MethodDecorator {
+    function RateLimit(limitInMilliseconds: number): MethodDecorator {
         return <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => {
             const originalMethod = descriptor.value as () => T;
             let lastExecution = 0; // a última execução
@@ -13,8 +13,8 @@ export const bootstrap = (): void => {
                 // liberar a execução do método somente se o intervalo entre a última execução e o instante atual for atendido
                 const now = Date.now(); // instante atual
 
-                if (now - lastExecution < limitInMicroseconds) {
-                    console.error(`O método ${String(propertyKey)} só pode ser chamado novamente após ${limitInMicroseconds}ms`);
+                if (now - lastExecution < limitInMilliseconds) {
+                    console.error(`O método ${String(propertyKey)} só pode ser chamado novamente após ${limitInMilliseconds}ms`);
                     descriptor.value = function() {} as T;
                 } else {
                     lastExecution = now;
@@ -52,7 +52,10 @@ export const bootstrap = (): void => {
     }
 
     const shoppingCart = new ShoppingCart();
-    // shoppingCart.getItem()
+    // shoppingCart.getItem();
+    // setInterval(() => {
+    //     shoppingCart.getItem();
+    // }, 3500);
     document.getElementById('getItems')?.addEventListener('click', () => {
         shoppingCart.getItem();
     })
